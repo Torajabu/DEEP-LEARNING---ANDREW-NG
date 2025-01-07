@@ -110,7 +110,7 @@ utils.train_plot_reg_params(reg_params, x_train, y_train, x_cv, y_cv, degree=4, 
 The resulting plot shows an initial λλ of 10, and as you can see, the training error is worse than the baseline at that point. This implies that it is placing a huge penalty on the w parameters, and this prevents the model from learning more complex patterns in your data. As you decrease λλ, the model loosens this restriction, and the training error is able to approach the baseline performance.
 
 
-##Fixing High Variance
+Fixing High Variance
 
 You will now look at some things to try when your model has overfit the training set. The main objective is to have a model that generalizes well to new examples, so you want to minimize the cross-validation error.
 Try Increasing the Regularization Parameter
