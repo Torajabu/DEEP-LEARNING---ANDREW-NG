@@ -2,6 +2,7 @@
 
 In the previous optional lab, you saw how to evaluate a learning algorithm's performance by measuring its training and cross-validation error. Given these values, you are able to quantify how well a model is doing, and this helps you make a decision on which one to use for a given application. In this lab, you will build upon this process and explore some tips to improve the performance of your models. As it turns out, the training and cross-validation errors can tell you what to try next to improve your models. Specifically, it will show if you have a high bias (underfitting) or high variance (overfitting) problem. This lecture slide shown below gives an example:
 
+<img src='' width=75%>
 
 The leftmost figure shows a high bias problem where the model is not capturing the patterns in the training data. As a result, you will have a high training and cross-validation error. The rightmost figure, on the other hand, shows a high variance problem where the model has overfit the training set. Thus, even though it has a low training error, it will perform poorly on new examples. That is indicated by a high cross-validation error. The ideal model would be the figure in the middle, where it successfully learns from the training set and also generalizes well to unseen data. The lectures gave some tips on what to do next to achieve this "just right" model. 
 
@@ -77,5 +78,3 @@ print(f"The shape of the cross-validation set (target) is: {y_cv.shape}\n")
 
 # Preview the first 5 rows
 print(f"First 5 rows of the training inputs (2 features):\n {x_train[:5]}\n")
-
-The corrected file ensures code blocks are wrapped in triple backticks (```python`) and text comments are not confused with headings. Copy and save this content into a new Markdown file, and it should render correctly on GitHub.
