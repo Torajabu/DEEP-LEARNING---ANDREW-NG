@@ -46,8 +46,6 @@ np.set_printoptions(precision=2)
 
 This week, a new activation was introduced, the Rectified Linear Unit (ReLU).
 
-python
-Copy
 
 plt_act_trio()
 
@@ -62,8 +60,6 @@ Where z=w⋅x+bz=w⋅x+b and N is the number of feature/categories in the output
 Exercise 1
 
 Let's create a NumPy implementation:
-python
-Copy
 
 import numpy as np
 
@@ -107,8 +103,6 @@ test_my_softmax(my_softmax)
 # END UNIT TEST  
 
 <details> <summary><font size="3" color="darkgreen"><b>Click for hints</b></font></summary> One implementation uses for loop to first build the denominator and then a second loop to calculate each output.
-python
-Copy
 
 def my_softmax(z):  
     N = len(z)
@@ -128,8 +122,6 @@ def my_softmax(z):
     return(a)
 
 Below, vary the values of the z inputs. Note in particular how the exponential in the numerator magnifies small differences in the values. Note as well that the output values sum to one.
-python
-Copy
 
 plt.close("all")
 plt_softmax(my_softmax)
@@ -143,8 +135,6 @@ In this exercise, you will use a neural network to recognize ten handwritten dig
 4.2 Dataset
 
 You will start by loading the dataset for this task.
-python
-Copy
 
 # load dataset
 X, y = load_data()
@@ -155,8 +145,6 @@ Let's get more familiar with your dataset.
 A good place to start is to print out each variable and see what it contains.
 
 The code below prints the first element in the variables X and y.
-python
-Copy
 
 print('The first element of X is: ', X[0])
 print('The first element of y is: ', y[0,0])
@@ -164,8 +152,7 @@ print('The last element of y is: ', y[-1,0])
 
 4.2.2 Check the dimensions of your variables
 Another way to get familiar with your data is to view its dimensions. Please print the shape of X and y and see how many training examples you have in your dataset.
-python
-Copy
+
 
 print('The shape of X is: ' + str(X.shape))
 print('The shape of y is: ' + str(y.shape))
@@ -175,8 +162,7 @@ print('The shape of y is: ' + str(y.shape))
 You will begin by visualizing a subset of the training set.
 In the cell below, the code randomly selects 64 rows from X, maps each row back to a 20 pixel by 20 pixel grayscale image and displays the images together.
 The label for each image is displayed above the image.
-python
-Copy
+
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -245,8 +231,7 @@ The outputs are not probabilities. If output probabilities are desired, apply a 
 Exercise 2
 
 Below, using Keras Sequential model and Dense Layer with a ReLU activation to construct the three layer network described above.
-python
-Copy
+
 
 # Data Preparation
 # Load data
@@ -348,8 +333,7 @@ Non-trainable params: 0
 _________________________________________________________________
 
 <details> <summary><font size="3" color="darkgreen"><b>Click for hints</b></font></summary>
-python
-Copy
+
 
 tf.random.set_seed(1234)
 model = Sequential(
@@ -371,8 +355,7 @@ END UNIT TEST
 The parameter counts shown in the summary correspond to the number of elements in the weight and bias arrays as shown below.
 
 Let's further examine the weights to verify that tensorflow produced the same dimensions as we calculated above.
-python
-Copy
+
 
 [layer1, layer2, layer3] = model.layers
 
@@ -385,7 +368,7 @@ print(f"W2 shape = {W2.shape}, b2 shape = {b2.shape}")
 print(f"W3 shape = {W3.shape}, b3 shape = {b3.shape}")
 
 Expected Output
-Copy
+
 
 W1 shape = (400, 25), b1 shape = (25,)  
 W2 shape = (25, 15), b2 shape = (15,)  
@@ -424,8 +407,7 @@ plot_loss_tf(history)
 
 Prediction
 To make a prediction, use Keras predict. Below, X[1015] contains an image of a two.
-python
-Copy
+
 
 image_of_two = X[1015]
 display_digit(image_of_two)
@@ -436,8 +418,7 @@ print(f" predicting a Two: \n{prediction}")
 print(f" Largest Prediction index: {np.argmax(prediction)}")
 
 The largest output is prediction[2], indicating the predicted digit is a '2'. If the problem only requires a selection, that is sufficient. Use NumPy argmax to select it. If the problem requires a probability, a softmax is required:
-python
-Copy
+
 
 prediction_p = tf.nn.softmax(prediction)
 
@@ -445,16 +426,14 @@ print(f" predicting a Two. Probability vector: \n{prediction_p}")
 print(f"Total of predictions: {np.sum(prediction_p):0.3f}")
 
 To return an integer representing the predicted target, you want the index of the largest probability. This is accomplished with the Numpy argmax function.
-python
-Copy
+
 
 yhat = np.argmax(prediction_p)
 
 print(f"np.argmax(prediction_p): {yhat}")
 
 Let's compare the predictions vs the labels for a random sample of 64 digits. This takes a moment to run.
-python
-Copy
+
 
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
@@ -490,8 +469,7 @@ Let's look at some of the errors.
 
     Note: increasing the number of training epochs can eliminate the errors on this data set.
 
-python
-Copy
+
 
 print( f"{display_errors(model,X,y)} errors out of {len(X)} images")
 
